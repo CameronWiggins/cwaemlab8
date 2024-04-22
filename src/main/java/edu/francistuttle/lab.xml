@@ -1,0 +1,54 @@
+<lab>
+    <computer id="1001">
+        <manufactor>Dell</manufactor>
+        <yearPurchased>2007</yearPurchased>
+        <processor>i4</processor>
+        <monitor id="2930">
+            <manufactor>Dell</manufactor>
+            <resolution>1920x1080</resolution>
+        </monitor>
+        <monitor id="1320">
+            <manufactor>Corpo</manufactor>
+            <resolution>1111x1111</resolution>
+        </monitor>
+    </computer>
+    <computer id="1072">
+        <manufactor>Lenovo</manufactor>
+        <yearPurchased>2017</yearPurchased>
+        <processor>i9</processor>
+        <monitor id="2100">
+            <manufactor>TranCorp</manufactor>
+            <resolution>1080x1980</resolution>
+        </monitor>
+        <monitor id="1999">
+            <manufactor>Potatoe</manufactor>
+            <resolution>720x720</resolution>
+        </monitor>
+    </computer>
+    <computer id="1203">
+        <manufactor>Chrome</manufactor>
+        <yearPurchased>2016</yearPurchased>
+        <processor>i8</processor>
+        <monitor id="9980">
+            <manufactor>Nebula</manufactor>
+            <resolution>8x8</resolution>
+        </monitor>
+        <monitor id="0220">
+            <manufactor>FineWare</manufactor>
+            <resolution>9999x9999</resolution>
+        </monitor>
+    </computer>
+    <computer id="2981">
+        <manufactor>Mac</manufactor>
+        <yearPurchased>2011</yearPurchased>
+        <processor>i6</processor>
+        <monitor id="2077">
+            <manufactor>Hairball</manufactor>
+            <resolution>800x800</resolution>
+        </monitor>
+        <monitor id="0009">
+            <manufactor>Tracer</manufactor>
+            <resolution>2011x2011</resolution>
+        </monitor>
+    </computer>
+</lab>
