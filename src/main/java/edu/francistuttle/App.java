@@ -18,32 +18,30 @@ import java.io.*;
 public class App {
   public static void main(String[] args) throws Exception {
 
-    Document document = readXMLDocumentFromFile(
-        "C:\\Users\\cw1101046\\Desktop\\Github\\cwaemlab8\\src\\main\\java\\edu\\francistuttle\\n" + //
-            "asa.xml");
+    parseRssFeed("https://rss.nytimes.com/services/xml/rss/nyt/World.xml",3);
 
-    // Verify XML Content
+    // Document document = readXMLDocumentFromFile("C:\\Users\\cw1101046\\Desktop\\Github\\cwaemlab8\\src\\main\\java\\edu\\francistuttle\\nasa.xml");
 
-    // Here comes the root node
-    Element root = document.getDocumentElement();
-    System.out.println(root.getNodeName());
+    // //Here comes the root node
+    // Element root = document.getDocumentElement();
+    // System.out.println(root.getNodeName());
 
-    // Get all employees
-    NodeList nList = document.getElementsByTagName("item");
-    System.out.println("============================");
+    // // Get all employees
+    // NodeList nList = document.getElementsByTagName("item");
+    // System.out.println("============================");
 
-    for (int temp = 0; temp < nList.getLength(); temp++) {
-      Node node = nList.item(temp);
+    // for (int temp = 0; temp < nList.getLength(); temp++) {
+    //   Node node = nList.item(temp);
 
-      if (node.getNodeType() == Node.ELEMENT_NODE) {
-        // Print each employee's detail
-        Element eElement = (Element) node;
-        System.out.println("\nTitle : " + eElement.getElementsByTagName("title").item(0).getTextContent());
-        System.out.println("Link : " + eElement.getElementsByTagName("link").item(0).getTextContent());
-        System.out.println("Publish Date : " + eElement.getElementsByTagName("pubDate").item(0).getTextContent());
+    //   if (node.getNodeType() == Node.ELEMENT_NODE) {
+    //     // Print each employee's detail
+    //     Element eElement = (Element) node;
+    //     System.out.println("\nTitle : " + eElement.getElementsByTagName("title").item(0).getTextContent());
+    //     System.out.println("Link : " + eElement.getElementsByTagName("link").item(0).getTextContent());
+    //     System.out.println("Publish Date : " + eElement.getElementsByTagName("pubDate").item(0).getTextContent());
 
-      }
-    }
+    //   }
+    // }
   }
 
   public static Document readXMLDocumentFromFile(String fileNameWithPath) throws Exception {
@@ -61,7 +59,8 @@ public class App {
     return document;
   }
 
-  public ArrayList<RSSItem> parseRssFeed(String url) {
+  public static ArrayList<RSSItem> parseRssFeed(String url, int maxItems) {
+    ArrayList<RSSItem> rssList = new ArrayList<RSSItem>();
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder builder = factory.newDocumentBuilder();
@@ -80,22 +79,22 @@ public class App {
 
             // Get all employees
             NodeList nList = document.getElementsByTagName("item");
-            ArrayList<RSSItem> rssList = new ArrayList<RSSItem>();
             System.out.println("============================");
 
-            for (int temp = 0; temp < nList.getLength(); temp++) {
+            for (int temp = 0; temp < maxItems; temp++) {
               Node node = nList.item(temp);
 
               if (node.getNodeType() == Node.ELEMENT_NODE) {
                 // Print each employee's detail
                 Element eElement = (Element) node;
-                // System.out.println("\nTitle : " + eElement.getElementsByTagName("title").item(0).getTextContent());
-                // System.out.println("Link : " + eElement.getElementsByTagName("link").item(0).getTextContent());
-                // System.out.println("Publish Date : " + eElement.getElementsByTagName("pubDate").item(0).getTextContent());
+                System.out.println("\nTitle : " + eElement.getElementsByTagName("title").item(0).getTextContent());
+                System.out.println("Link : " + eElement.getElementsByTagName("link").item(0).getTextContent());
+                System.out.println("Publish Date : " + eElement.getElementsByTagName("pubDate").item(0).getTextContent());
                 String title = eElement.getElementsByTagName("title").item(0).getTextContent();
                 String link = eElement.getElementsByTagName("link").item(0).getTextContent();
                 String pubDate = eElement.getElementsByTagName("pubDate").item(0).getTextContent();
                 RSSItem item = new RSSItem(title, link, "", "", pubDate);
+                rssList.add(item);
               }
             }
             return rssList;
@@ -107,6 +106,6 @@ public class App {
     } catch (Exception e) {
       System.out.println("Error: " + e.toString());
     }
-
+    return rssList;
   }
 }
